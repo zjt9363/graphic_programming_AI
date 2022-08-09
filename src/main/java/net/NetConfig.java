@@ -1,6 +1,7 @@
 package net;
 
 
+import org.springframework.stereotype.Service;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.HashMap;
 /**
  * @author Zarrow
  */
+
+@Service
 public class NetConfig {
     private String fileName;
     private boolean toCategorical = false;

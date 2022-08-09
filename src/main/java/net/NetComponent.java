@@ -3,6 +3,10 @@ package net;
 
 //import net.NetConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import utils.CodeText;
 import utils.Util;
 
@@ -11,61 +15,87 @@ import java.util.HashMap;
 /**
  * @author Zarrow
  */
+
+@Component
 public class NetComponent {
+    @Autowired
+    @Value("${importPackage}")
+    String importPackage;
+    @Value("${gpuConfiguration}")
+    String gpuConfiguration;
+    @Value("${loadFile}")
+    String loadFile;
+    @Value("${init}")
+    String init;
+    @Value("${toCategorical}")
+    String toCategorical;
+    @Value("${addModel}")
+    String addModel;
+    @Value("${netBuild}")
+    String netBuild;
+    @Value("${summary}")
+    String summary;
+    @Value("${earlyStopping}")
+    String earlyStopping;
+    @Value("${fit}")
+    String fit;
+    @Value("${evaluate}")
+    String evaluate;
+    @Value("${print}")
+    String print;
+    @Value("${compile}")
+    String compile;
 
-
-
-    public static String importPackage(){
-        return CodeText.IMPORT_PACKAGE;
+    public String importPackage(){
+        return importPackage;
     }
 
-    public static String gpuConfig(){
-        return CodeText.GPU_CONFIGURATION;
+    public String gpuConfig(){
+        return gpuConfiguration;
     }
 
-    public static String loadData(NetConfig netConfig){
-        return String.format(CodeText.LOAD_FILE, netConfig.getFileName());
+    public String loadData(NetConfig netConfig){
+        return String.format(loadFile, netConfig.getFileName());
     }
 
-    public static String init(NetConfig netConfig){
-        return String.format(CodeText.INIT, netConfig.getNumClasses());
+    public String init(NetConfig netConfig){
+        return String.format(init, netConfig.getNumClasses());
     }
 
-    public static String toCategorical(){
-        return CodeText.TO_CATEGORICAL;
+    public String toCategorical(){
+        return toCategorical;
     }
 
-    public static String addLayer(String functionName, HashMap<String,String> m){
-        return CodeText.ADD_MODEL + functionName + "(" + Util.layerParameterToString(m) + "))\n";
+    public String addLayer(String functionName, HashMap<String,String> m){
+        return addModel + functionName + "(" + Util.layerParameterToString(m) + "))\n";
     }
 
-    public static String netBuild(){
-        return CodeText.NET_BUILD;
+    public String netBuild(){
+        return netBuild;
     }
 
-    public static String summary() {
-        return CodeText.SUMMARY;
+    public String summary() {
+        return summary;
     }
 
-
-    public static String earlyStopping() {
-        return CodeText.EARLY_STOPPING;
+    public String earlyStopping() {
+        return earlyStopping;
     }
 
-    public static String fit() {
-        return CodeText.FIT;
+    public String fit() {
+        return fit;
     }
 
-    public static String evaluate() {
-        return CodeText.EVALUATE;
+    public String evaluate() {
+        return evaluate;
     }
 
-    public static String print() {
-        return CodeText.PRINT;
+    public String print() {
+        return print;
     }
 
-    public static String compile(NetConfig netConfig) {
-        StringBuilder stringBuilder = new StringBuilder(CodeText.COMPILE);
+    public String compile(NetConfig netConfig) {
+        StringBuilder stringBuilder = new StringBuilder(compile);
         if (netConfig.isToCategorical()){
             stringBuilder.delete(20,27);
         };

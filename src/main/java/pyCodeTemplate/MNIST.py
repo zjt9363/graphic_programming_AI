@@ -23,11 +23,6 @@ data = pickle.load(f, encoding='bytes')
 f.close()
 (x_train, y_train), (x_test, y_test) = data
 
-# file = gzip.open('test1.pkl.gz', 'wb')
-# pickle.dump(data, file)
-# file.close
-
-
 input_shape = (x_train.shape[1],
                x_train.shape[2],
                1 if len(x_train.shape) == 3 else x_train.shape[3])

@@ -1,4 +1,6 @@
 import net.NetConfig;
+import service.PyGenerator;
+import service.PyRun;
 import utils.NetText;
 import utils.Pair;
 
@@ -10,7 +12,7 @@ import java.util.HashMap;
 public class MyTest {
     @org.junit.Test
     public void testAutoGenerate() throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        NetConfig netConfig = new NetConfig();
+        PyGenerator pyGenerator = new PyGenerator();
         ArrayList<Pair<String, HashMap<String, String>>> arrayList= new ArrayList<>();
         arrayList.add(new Pair<String, HashMap<String, String>>(NetText.conv2D, new HashMap<String, String>()));
         arrayList.get(0).snd.put(NetText.filters,"128");
@@ -39,6 +41,8 @@ public class MyTest {
         arrayList.add(new Pair<String, HashMap<String, String>>(NetText.dense, new HashMap<String, String>()));
         arrayList.get(7).snd.put(NetText.units,"10");
         arrayList.get(7).snd.put(NetText.activation,"softmax");
+
+        NetConfig netConfig = new NetConfig();
 
         netConfig.setArrayList(arrayList);
 

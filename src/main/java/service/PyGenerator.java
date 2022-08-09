@@ -1,5 +1,10 @@
+package service;
+
+import config.SpringConfig;
 import net.NetComponent;
 import net.NetConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import utils.Pair;
 
 import java.io.FileOutputStream;
@@ -29,17 +34,21 @@ public class PyGenerator {
 
 
     static public void codeGenerator(NetConfig netConfig) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+
+        NetComponent netComponent = ctx.getBean(NetComponent.class);
+
         StringBuilder stringBuilder = new StringBuilder();
 
 
-        stringBuilder.append(NetComponent.importPackage());
-        stringBuilder.append(NetComponent.gpuConfig());
-        stringBuilder.append(NetComponent.loadData(netConfig));
-        stringBuilder.append(NetComponent.init(netConfig));
+        stringBuilder.append(netComponent.importPackage());
+        stringBuilder.append(netComponent.gpuConfig());
+        stringBuilder.append(netComponent.loadData(netConfig));
+        stringBuilder.append(netComponent.init(netConfig));
         if (netConfig.isToCategorical()){
-            stringBuilder.append(NetComponent.toCategorical());
+            stringBuilder.append(netComponent.toCategorical());
         }
-        stringBuilder.append(NetComponent.netBuild());
+        stringBuilder.append(netComponent.netBuild());
 
         Boolean flag = true;
         for (Pair<String, HashMap<String,String>> pair : netConfig.getArrayList()){
@@ -47,15 +56,15 @@ public class PyGenerator {
                 pair.snd.put("input_shape","input_shape");
                 flag = false;
             }
-            stringBuilder.append(NetComponent.addLayer(pair.fst, pair.snd));
+            stringBuilder.append(netComponent.addLayer(pair.fst, pair.snd));
         }
 
-        stringBuilder.append(NetComponent.summary());
-        stringBuilder.append(NetComponent.compile(netConfig));
-        stringBuilder.append(NetComponent.earlyStopping());
-        stringBuilder.append(NetComponent.fit());
-        stringBuilder.append(NetComponent.evaluate());
-        stringBuilder.append(NetComponent.print());
+        stringBuilder.append(netComponent.summary());
+        stringBuilder.append(netComponent.compile(netConfig));
+        stringBuilder.append(netComponent.earlyStopping());
+        stringBuilder.append(netComponent.fit());
+        stringBuilder.append(netComponent.evaluate());
+        stringBuilder.append(netComponent.print());
 
         String data = stringBuilder.toString();
 

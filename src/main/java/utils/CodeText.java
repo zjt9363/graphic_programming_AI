@@ -39,7 +39,7 @@ public class CodeText {
             "x_train /= 255\n" +
             "x_test /= 255\n" +
             "batch_size = 128\n" +
-            "epochs = 2000\n" +
+            "epochs = 1024\n" +
             "img_rows, img_cols = x_train.shape[1], x_train.shape[2]\n" +
             "\n" +
             "num_classes = %s\n" +
