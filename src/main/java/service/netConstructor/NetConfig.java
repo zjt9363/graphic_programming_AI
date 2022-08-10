@@ -1,8 +1,8 @@
-package net;
+package service.netConstructor;
 
 
 import org.springframework.stereotype.Service;
-import utils.Pair;
+import service.utils.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

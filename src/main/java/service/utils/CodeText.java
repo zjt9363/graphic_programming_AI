@@ -1,4 +1,4 @@
-package utils;
+package service.utils;
 
 /**
  * @author Zarrow
@@ -44,8 +44,8 @@ public class CodeText {
             "\n" +
             "num_classes = %s\n" +
             "\n";
-    public static final String TO_CATEGORICAL = "y_train = keras.utils.to_categorical(y_train, num_classes)\n" +
-            "y_test = keras.utils.to_categorical(y_test, num_classes)\n" +
+    public static final String TO_CATEGORICAL = "y_train = keras.service.utils.to_categorical(y_train, num_classes)\n" +
+            "y_test = keras.service.utils.to_categorical(y_test, num_classes)\n" +
             "\n";
 
     public static final String COMPILE = "model.compile(loss='sparse_categorical_crossentropy', \n" +

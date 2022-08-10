@@ -1,8 +1,9 @@
-import net.NetConfig;
+import org.junit.Test;
+import service.netConstructor.NetConfig;
 import service.PyGenerator;
 import service.PyRun;
-import utils.NetText;
-import utils.Pair;
+import service.utils.NetText;
+import service.utils.Pair;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MyTest {
-    @org.junit.Test
+    @Test
     public void testAutoGenerate() throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         PyGenerator pyGenerator = new PyGenerator();
         ArrayList<Pair<String, HashMap<String, String>>> arrayList= new ArrayList<>();
@@ -55,9 +56,14 @@ public class MyTest {
         PyGenerator.codeGenerator(netConfig);
     }
 
-    @org.junit.Test
+    @Test
     public void runCode(){
         PyRun.run("main.py");
 
+    }
+
+    @Test
+    public void stopRunning(){
+        PyRun.destroy();
     }
 }

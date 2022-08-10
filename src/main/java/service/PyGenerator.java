@@ -1,11 +1,10 @@
 package service;
 
 import config.SpringConfig;
-import net.NetComponent;
-import net.NetConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import service.netConstructor.NetComponent;
+import service.netConstructor.NetConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import utils.Pair;
+import service.utils.Pair;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -2,14 +2,13 @@ package config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * @author Zarrow
  */
-
 @Configuration
-@ComponentScan({"service"})
-@PropertySource("classpath:pyCodeProp.properties")
-public class SpringConfig {
+@ComponentScan({"controller"})
+@EnableWebMvc
+public class SpringMvcConfig {
 }

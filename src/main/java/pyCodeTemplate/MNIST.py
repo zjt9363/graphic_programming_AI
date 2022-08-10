@@ -23,6 +23,11 @@ data = pickle.load(f, encoding='bytes')
 f.close()
 (x_train, y_train), (x_test, y_test) = data
 
+# file = gzip.open('test1.pkl.gz', 'wb')
+# pickle.dump(data, file)
+# file.close
+
+
 input_shape = (x_train.shape[1],
                x_train.shape[2],
                1 if len(x_train.shape) == 3 else x_train.shape[3])
@@ -46,7 +51,6 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(rate=0.5))
 model.add(Flatten())
 model.add(Dense(units=128, activation='relu'))
-model.add(Dropout(rate=0.75))
 model.add(Dense(units=256, activation='relu'))
 model.add(Dropout(rate=0.75))
 model.add(Dense(units=num_classes, activation='softmax'))
